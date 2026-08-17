@@ -79,6 +79,22 @@
         background: rgba(24, 15, 16, .72);
         box-shadow: 0 18px 50px rgba(0, 0, 0, .18);
         backdrop-filter: blur(16px);
+        transition: background .25s ease, padding .25s ease, border-radius .25s ease, box-shadow .25s ease;
+      }
+
+      .top-navigation.is-stuck {
+        position: fixed;
+        z-index: 40;
+        top: 0;
+        right: 0;
+        left: 0;
+        width: 100vw;
+        border-width: 0 0 1px;
+        border-radius: 0;
+        padding: 15px max(24px, calc((100vw - 1240px) / 2));
+        background: rgba(37, 26, 27, .98);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, .28);
+        backdrop-filter: blur(18px);
       }
 
       .brand {
@@ -117,6 +133,33 @@
         font: 700 .76rem/1 "Space Grotesk", Arial, sans-serif;
         text-decoration: none;
         white-space: nowrap;
+      }
+
+      .navigation-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .navigation-social {
+        display: inline-grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border: 1px solid rgba(255, 244, 219, .16);
+        border-radius: 11px;
+        color: var(--paper);
+        background: rgba(255, 244, 219, .05);
+        font-size: .88rem;
+        text-decoration: none;
+        transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+      }
+
+      .navigation-social:hover {
+        border-color: var(--amber);
+        color: var(--ink);
+        background: var(--amber);
+        transform: translateY(-2px);
       }
 
       .hero {
@@ -373,7 +416,7 @@
         width: 100vw;
         height: 42px;
         margin-left: calc(50% - 50vw);
-        margin-top: 60px;
+        margin-top: 200px;
         background: linear-gradient(
           to bottom,
           var(--amber) 0 33.333%,
@@ -428,6 +471,13 @@
       .skill-chip--ml { --skill-color: #ad8cff; }
       .skill-chip--data { --skill-color: #56c5f2; }
       .skill-chip--seo { --skill-color: #ff754f; }
+      .skill-chip--cyber { --skill-color: #57d4e8; }
+      .skill-chip--lgpd { --skill-color: #ffb716; }
+      .skill-chip--data-engineering { --skill-color: #56c5f2; }
+      .skill-chip--kubernetes { --skill-color: #4f83e8; }
+      .skill-chip--microservices { --skill-color: #f26a4f; }
+      .skill-chip--api { --skill-color: #b28cff; }
+      .skill-chip--aws { --skill-color: #ff9900; }
       .skill-chip--angular { --skill-color: #dd0031; }
       .skill-chip--react { --skill-color: #61dafb; }
       .skill-chip--vue { --skill-color: #42b883; }
@@ -1063,6 +1113,7 @@
         position: relative;
         width: 100vw;
         margin-left: calc(50% - 50vw);
+        margin-top: 100px;
         padding: 108px 0 118px;
         color: var(--ink);
         background: #f6eedb;
@@ -1232,7 +1283,80 @@
         text-transform: uppercase;
       }
 
+      .repository-projects,
+      .private-projects,
       .learning-projects { margin-top: 80px; }
+
+      .repository-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .repository-card,
+      .private-project-card {
+        position: relative;
+        min-height: 218px;
+        border: 1px solid rgba(37, 26, 27, .14);
+        border-radius: 18px;
+        padding: 23px;
+        color: var(--ink);
+        background: #fffaf0;
+        box-shadow: 0 8px 20px rgba(50, 31, 27, .06);
+      }
+
+      .repository-card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        text-decoration: none;
+        transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      }
+
+      .repository-card::after {
+        position: absolute;
+        right: -38px;
+        bottom: -38px;
+        width: 112px;
+        height: 112px;
+        border: 19px solid var(--repo-color, var(--amber));
+        border-radius: 50%;
+        content: "";
+        opacity: .9;
+      }
+
+      .repository-card:hover {
+        border-color: var(--repo-color, var(--amber));
+        box-shadow: 0 18px 28px rgba(50, 31, 27, .13);
+        transform: translateY(-6px);
+      }
+
+      .repository-card > * { position: relative; z-index: 1; }
+      .repository-card i { color: var(--repo-color, var(--amber)); font-size: 1.3rem; }
+      .repository-card span,
+      .private-project-card span {
+        display: block;
+        margin-top: 30px;
+        color: var(--repo-color, var(--purple));
+        font-family: "DM Mono", monospace;
+        font-size: .64rem;
+        letter-spacing: .065em;
+        text-transform: uppercase;
+      }
+      .repository-card h4,
+      .private-project-card h4 { margin: 9px 0 0; font-size: 1.16rem; letter-spacing: -.05em; line-height: 1.06; }
+      .repository-card small { margin-top: auto; color: #66564f; font-family: "DM Mono", monospace; font-size: .65rem; }
+      .repository-card small i { margin-left: 5px; font-size: .58rem; }
+
+      .private-project-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .private-project-card { min-height: 178px; }
+      .private-project-card span { margin-top: 0; }
+      .private-project-card p { margin: 12px 0 0; color: #66564f; font-size: .86rem; line-height: 1.45; }
 
       .learning-heading {
         display: flex;
@@ -1293,6 +1417,7 @@
         position: relative;
         width: 100vw;
         margin-left: calc(50% - 50vw);
+        margin-top: 200px;
         overflow: hidden;
         color: var(--paper);
         background: var(--ink);
@@ -1409,8 +1534,12 @@
 
       @media (max-width: 760px) {
         .site-shell { width: min(100% - 28px, 540px); padding-top: 14px; }
-        .top-navigation { padding: 11px 13px; }
+        .top-navigation { gap: 10px; padding: 11px 13px; }
+        .top-navigation.is-stuck { padding: 12px 14px; }
         .menu-links { display: none; }
+        .navigation-actions { gap: 6px; }
+        .navigation-social { width: 34px; height: 34px; }
+        .menu-cta { padding: 10px 11px; }
         .hero { grid-template-columns: 1fr; gap: 46px; min-height: auto; padding: 56px 6px 42px; }
         .profile-card { width: min(100%, 350px); min-height: 420px; margin: 0 auto; }
         .hero-copy { margin-top: 22px; }
@@ -1446,9 +1575,10 @@
         .projects-section { padding: 72px 0 78px; }
         .projects-inner { width: min(100% - 28px, 540px); }
         .projects-heading { margin-bottom: 45px; }
-        .project-research-grid, .learning-grid { grid-template-columns: 1fr; }
+        .project-research-grid, .repository-grid, .learning-grid { grid-template-columns: 1fr; }
         .project-feature, .project-side-card { min-height: 330px; padding: 24px; }
-        .learning-projects { margin-top: 60px; }
+        .repository-projects, .private-projects, .learning-projects { margin-top: 60px; }
+        .private-project-grid { grid-template-columns: 1fr; }
         .learning-card { min-height: 180px; }
         .learning-card span { margin-top: 24px; }
         .footer-inner { grid-template-columns: 1fr; gap: 38px; width: min(100% - 28px, 540px); padding: 62px 0 48px; }
@@ -1474,7 +1604,11 @@
           <a href="#pesquisa">Pesquisa</a>
           <a href="#projetos">Projetos</a>
         </div>
-        <a class="menu-cta" href="mailto:seuemail@exemplo.com">Contato</a>
+        <div class="navigation-actions">
+          <a class="navigation-social" href="https://github.com/mateusvalente" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a class="navigation-social" href="https://br.linkedin.com/in/mateus-valente-b6978a173" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a class="menu-cta" href="https://wa.me/553499905346" target="_blank" rel="noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+        </div>
       </nav>
 
       <section class="hero" id="inicio">
@@ -1483,10 +1617,10 @@
           <h2 class="profile-name">Mateus Valente</h2>
           <p class="profile-role">Desenvolvedor de software</p>
           <div class="social-links" aria-label="Redes sociais">
-            <a href="#linkedin" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#whatsapp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="mailto:seuemail@exemplo.com" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
-            <a href="#github" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://br.linkedin.com/in/mateus-valente-b6978a173" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://wa.me/553499905346" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="mailto:mateus.sousa.valente@gmail.com" aria-label="E-mail"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/mateusvalente" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
         </aside>
 
@@ -1501,7 +1635,7 @@
           </div>
           <div class="hero-actions">
             <a class="button" href="#projetos"><i class="fa-solid fa-arrow-right"></i> Ver projetos</a>
-            <a class="button button--ghost" href="mailto:seuemail@exemplo.com"><i class="fa-regular fa-envelope"></i> Vamos conversar</a>
+            <a class="button button--ghost" href="mailto:mateus.sousa.valente@gmail.com"><i class="fa-regular fa-envelope"></i> Vamos conversar</a>
           </div>
         </div>
       </section>
@@ -1528,6 +1662,8 @@
                 <span class="skill-chip skill-chip--three"><i class="fa-solid fa-cubes"></i>Three.js</span>
                 <span class="skill-chip skill-chip--webgl"><i class="fa-solid fa-cube"></i>WebGL</span>
                 <span class="skill-chip skill-chip--responsive"><i class="fa-solid fa-mobile-screen-button"></i>Responsive UI</span>
+                <span class="skill-chip skill-chip--cyber"><i class="fa-solid fa-shield-halved"></i>Cybersecurity</span>
+                <span class="skill-chip skill-chip--lgpd"><i class="fa-solid fa-user-shield"></i>LGPD</span>
               </div>
               <div class="skill-set" aria-hidden="true">
                 <span class="skill-chip skill-chip--html"><i class="fa-brands fa-html5"></i>HTML5</span>
@@ -1539,6 +1675,8 @@
                 <span class="skill-chip skill-chip--three"><i class="fa-solid fa-cubes"></i>Three.js</span>
                 <span class="skill-chip skill-chip--webgl"><i class="fa-solid fa-cube"></i>WebGL</span>
                 <span class="skill-chip skill-chip--responsive"><i class="fa-solid fa-mobile-screen-button"></i>Responsive UI</span>
+                <span class="skill-chip skill-chip--cyber"><i class="fa-solid fa-shield-halved"></i>Cybersecurity</span>
+                <span class="skill-chip skill-chip--lgpd"><i class="fa-solid fa-user-shield"></i>LGPD</span>
               </div>
             </div>
           </div>
@@ -1571,6 +1709,11 @@
                 <span class="skill-chip skill-chip--microcontrollers"><i class="fa-solid fa-microchip"></i>Microcontroladores</span>
                 <span class="skill-chip skill-chip--figma"><i class="fa-brands fa-figma"></i>Figma</span>
                 <span class="skill-chip skill-chip--a11y"><i class="fa-solid fa-universal-access"></i>Acessibilidade</span>
+                <span class="skill-chip skill-chip--data-engineering"><i class="fa-solid fa-gears"></i>Data Engineering</span>
+                <span class="skill-chip skill-chip--kubernetes"><i class="fa-solid fa-dharmachakra"></i>Kubernetes</span>
+                <span class="skill-chip skill-chip--microservices"><i class="fa-solid fa-diagram-project"></i>Microservices</span>
+                <span class="skill-chip skill-chip--api"><i class="fa-solid fa-plug"></i>REST APIs</span>
+                <span class="skill-chip skill-chip--aws"><i class="fa-brands fa-aws"></i>AWS</span>
               </div>
               <div class="skill-set" aria-hidden="true">
                 <span class="skill-chip skill-chip--git"><i class="fa-brands fa-git-alt"></i>Git</span>
@@ -1598,6 +1741,11 @@
                 <span class="skill-chip skill-chip--microcontrollers"><i class="fa-solid fa-microchip"></i>Microcontroladores</span>
                 <span class="skill-chip skill-chip--figma"><i class="fa-brands fa-figma"></i>Figma</span>
                 <span class="skill-chip skill-chip--a11y"><i class="fa-solid fa-universal-access"></i>Acessibilidade</span>
+                <span class="skill-chip skill-chip--data-engineering"><i class="fa-solid fa-gears"></i>Data Engineering</span>
+                <span class="skill-chip skill-chip--kubernetes"><i class="fa-solid fa-dharmachakra"></i>Kubernetes</span>
+                <span class="skill-chip skill-chip--microservices"><i class="fa-solid fa-diagram-project"></i>Microservices</span>
+                <span class="skill-chip skill-chip--api"><i class="fa-solid fa-plug"></i>REST APIs</span>
+                <span class="skill-chip skill-chip--aws"><i class="fa-brands fa-aws"></i>AWS</span>
               </div>
             </div>
           </div>
@@ -1744,7 +1892,7 @@
               </article>
               <article class="course-card">
                 <span class="course-type">Formação complementar</span>
-                <h4>Sistemas de Informação</h4>
+                <h4>Curso em IoT e Sistemas Supervisórios</h4>
                 <p>UNIUBE</p>
               </article>
               <article class="course-card">
@@ -1905,7 +2053,7 @@
               <div>
                 <h4>Otimização de custos em oficina mecânica de feixes de mola laminados na cidade de Uberaba (MG)</h4>
                 <p>Cadernos Cajuína · Aplicação do método simplex</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.52641/cadcajv11i9.3471" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #f73532">
@@ -1913,7 +2061,7 @@
               <div>
                 <h4>Implementação e avaliação de desempenho de uma solução browser-native com ACO e WebGPU</h4>
                 <p>Observatorio de la Economía Latinoamericana · Roteirização logística baseada em OpenStreetMap</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.55905/oelv24n5-035" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #f89b1c">
@@ -1921,7 +2069,7 @@
               <div>
                 <h4>Desenvolvimento de software para gestão de documentos licitatórios</h4>
                 <p>Revista de Engenharia, TI e Inovação · v. 2, p. 1–14</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v2i1.1751" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #92247d">
@@ -1929,7 +2077,7 @@
               <div>
                 <h4>Sistema de gerenciamento empresarial</h4>
                 <p>Revista de Engenharia, TI e Inovação · v. 2, p. 1–13</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v2i1.1886" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #5dc6ba">
@@ -1937,7 +2085,7 @@
               <div>
                 <h4>Plataforma de treinamento integrada para empresas</h4>
                 <p>Revista de Engenharia, TI e Inovação · v. 2, p. 1–8</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v2i1.1752" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #f66b25">
@@ -1945,7 +2093,7 @@
               <div>
                 <h4>Partida direta de motores</h4>
                 <p>Revista de Engenharia, TI e Inovação · v. 2, p. 1–2</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v2i2.1979" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #a82979">
@@ -1953,7 +2101,7 @@
               <div>
                 <h4>BoviHealth: plataforma digital para a gestão de rebanhos leiteiros</h4>
                 <p>Revista de Engenharia, TI e Inovação · v. 1, p. 10</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v1i2.1846" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #f73532">
@@ -1961,7 +2109,7 @@
               <div>
                 <h4>Sistema inteligente de monitoramento para logística de transporte de grãos</h4>
                 <p>Revista de Engenharia, TI e Inovação · Setor agroindustrial</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.31496/retii.v1i2.1853" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #ffb716">
@@ -1969,7 +2117,7 @@
               <div>
                 <h4>Desenvolvimento de um CRM educacional para auxílio da gestão de relacionamento com o cliente</h4>
                 <p>Revista Foco · v. 17, e7033</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.54751/revistafoco.v17n11-248" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #5dc6ba">
@@ -1977,7 +2125,7 @@
               <div>
                 <h4>Sistema de detecção de resíduos em rios e nascentes com visão computacional e IA</h4>
                 <p>Revista de Gestão e Secretariado · v. 15, e4497</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.7769/gesec.v15i11.4497" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #92247d">
@@ -1985,7 +2133,7 @@
               <div>
                 <h4>O uso de aplicativos como ambiente de aprendizagem virtual no ensino superior</h4>
                 <p>Série Educar – Tecnologia · Editora Poisson · p. 112–119</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.36229/978-65-86127-07-2.CAP.17" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
             <article class="publication-item" style="--publication-color: #f89b1c">
@@ -1993,7 +2141,7 @@
               <div>
                 <h4>Desenvolvimento de atendimento automatizado para auxílio na gestão de permanência dos cursos EAD da UNIUBE</h4>
                 <p>Conteúdo Conceitual e Aspectos Práticos da Ciência da Computação · Atena Editora</p>
-                <a class="publication-link" href="http://localhost:8989/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
+                <a class="publication-link" href="https://doi.org/10.22533/at.ed.0102014127" target="_blank" rel="noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> Ler publicação</a>
               </div>
             </article>
           </div>
@@ -2031,6 +2179,95 @@
               </div>
               <footer><i class="fa-solid fa-flask"></i> Produção científica · 2026</footer>
             </article>
+          </div>
+
+          <div class="repository-projects">
+            <header class="learning-heading">
+              <div>
+                <p class="projects-group-label"><i class="fa-brands fa-github"></i> Repositórios públicos</p>
+                <h3>Exemplos práticos de arquitetura e integração</h3>
+              </div>
+              <span>GitHub · código aberto</span>
+            </header>
+
+            <div class="repository-grid">
+              <a class="repository-card" style="--repo-color: #ffb716" href="https://github.com/mateusvalente/projeto-exemplo-crud-vertical-slice" target="_blank" rel="noreferrer">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Vertical Slice</span>
+                <h4>Exemplo de CRUD com Vertical Slice</h4>
+                <small>Ver repositório <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+              </a>
+              <a class="repository-card" style="--repo-color: #f73532" href="https://github.com/mateusvalente/exemplo_streaming_video" target="_blank" rel="noreferrer">
+                <i class="fa-solid fa-video"></i>
+                <span>Streaming de vídeo</span>
+                <h4>Exemplo de streaming de vídeo</h4>
+                <small>Ver repositório <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+              </a>
+              <a class="repository-card" style="--repo-color: #92247d" href="https://github.com/mateusvalente/chat_exemplo_websocket" target="_blank" rel="noreferrer">
+                <i class="fa-solid fa-comments"></i>
+                <span>WebSocket</span>
+                <h4>Exemplo de chat em tempo real</h4>
+                <small>Ver repositório <i class="fa-solid fa-arrow-up-right-from-square"></i></small>
+              </a>
+            </div>
+          </div>
+
+          <div class="private-projects">
+            <header class="learning-heading">
+              <div>
+                <p class="projects-group-label"><i class="fa-solid fa-lock"></i> Projetos profissionais</p>
+                <h3>Soluções desenvolvidas em ambientes privados</h3>
+              </div>
+              <span>Cases sem código público</span>
+            </header>
+
+            <div class="private-project-grid">
+              <article class="private-project-card" style="--repo-color: #ffb716">
+                <span>Uniube · dados</span>
+                <h4>Pipeline de rastreamento de ads</h4>
+                <p>Estruturação de um pipeline para consolidar dados de campanhas e apoiar o acompanhamento de performance de mídia.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #f73532">
+                <span>CRM · dados · comunicação</span>
+                <h4>Integração HubSpot e inteligência de dados</h4>
+                <p>Integração entre CRM, rotinas de ETL e comunicação para transformar dados em insights acionáveis.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #92247d">
+                <span>Processos acadêmicos</span>
+                <h4>Inscrições de vestibulares</h4>
+                <p>Desenvolvimento e evolução de fluxos digitais de inscrição, com foco em uma jornada simples e confiável.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #5dc6ba">
+                <span>Web · SEO</span>
+                <h4>Ecossistema digital Uniube</h4>
+                <p>Manutenção e evolução de portais como uniube.br, MPHU e AVA, incluindo estrutura técnica e otimização para busca.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #ffb716">
+                <span>Mobile</span>
+                <h4>Aplicativos institucionais</h4>
+                <p>Aplicativos para AVA, Uniube Aberta, MPHU e intranet, aproximando serviços acadêmicos e institucionais do usuário.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #f73532">
+                <span>Segurança do trabalho</span>
+                <h4>MEPI</h4>
+                <p>Aplicativo de apoio à segurança do trabalho, criado para digitalizar informações e rotinas operacionais.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #92247d">
+                <span>IoT · sistemas supervisórios</span>
+                <h4>Sensores conectados em sistemas supervisórios</h4>
+                <p>Integração de sensores via Internet das Coisas a sistemas supervisórios, conectando dados de campo, operação e monitoramento.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #5dc6ba">
+                <span>CRM corporativo</span>
+                <h4>Integração Black &amp; Decker</h4>
+                <p>Integração de processos e dados de CRM para apoiar o relacionamento e a operação comercial.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #ffb716">
+                <span>Arquitetura de software</span>
+                <h4>Frameworks próprios Uniube</h4>
+                <p>Criação de padrões e componentes reutilizáveis com MVC, componentização e Vertical Slice para acelerar entregas.</p>
+              </article>
+            </div>
           </div>
 
           <div class="learning-projects">
@@ -2076,22 +2313,22 @@
           <h2 class="footer-title">Vamos criar algo que faça diferença.</h2>
         </div>
         <nav class="footer-contacts" aria-label="Canais de contato">
-          <a href="#linkedin">
+          <a href="https://br.linkedin.com/in/mateus-valente-b6978a173" target="_blank" rel="noreferrer">
             <i class="footer-contact-icon fa-brands fa-linkedin-in"></i>
             <span class="footer-contact-text"><small>Perfil profissional</small><strong>LinkedIn</strong></span>
             <i class="footer-contact-arrow fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          <a href="#whatsapp">
+          <a href="https://wa.me/553499905346">
             <i class="footer-contact-icon fa-brands fa-whatsapp"></i>
-            <span class="footer-contact-text"><small>Mensagem direta</small><strong>WhatsApp</strong></span>
+            <span class="footer-contact-text"><small>(34) 9990-5346</small><strong>WhatsApp</strong></span>
             <i class="footer-contact-arrow fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          <a href="mailto:seuemail@exemplo.com">
+          <a href="mailto:mateus.sousa.valente@gmail.com">
             <i class="footer-contact-icon fa-solid fa-envelope"></i>
             <span class="footer-contact-text"><small>Fale por e-mail</small><strong>E-mail</strong></span>
             <i class="footer-contact-arrow fa-solid fa-arrow-up-right-from-square"></i>
           </a>
-          <a href="#github">
+          <a href="https://github.com/mateusvalente" target="_blank" rel="noreferrer">
             <i class="footer-contact-icon fa-brands fa-github"></i>
             <span class="footer-contact-text"><small>Código e projetos</small><strong>GitHub</strong></span>
             <i class="footer-contact-arrow fa-solid fa-arrow-up-right-from-square"></i>
@@ -2109,6 +2346,17 @@
           "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js"
         }
       }
+    </script>
+    <script>
+      const navigation = document.querySelector('.top-navigation');
+      const navigationStart = navigation.getBoundingClientRect().top + window.scrollY;
+
+      function updateNavigationState() {
+        navigation.classList.toggle('is-stuck', window.scrollY >= navigationStart);
+      }
+
+      window.addEventListener('scroll', updateNavigationState, { passive: true });
+      updateNavigationState();
     </script>
     <script type="module" src="./main.js"></script>
   </body>
