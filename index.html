@@ -1385,6 +1385,8 @@
       }
 
       .learning-card {
+        display: flex;
+        flex-direction: column;
         min-height: 230px;
         padding: 20px;
         background: #fffaf0;
@@ -1411,6 +1413,40 @@
         font-size: 1.06rem;
         letter-spacing: -.045em;
         line-height: 1.1;
+      }
+
+      .learning-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 22px;
+      }
+
+      .learning-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: 1px solid rgba(37, 26, 27, .16);
+        border-radius: 999px;
+        padding: 8px 10px;
+        color: var(--ink);
+        background: #fffaf0;
+        font-family: "DM Mono", monospace;
+        font-size: .61rem;
+        text-decoration: none;
+        transition: border-color .2s ease, color .2s ease, transform .2s ease;
+      }
+
+      .learning-links a:hover {
+        border-color: var(--learning-color, var(--purple));
+        color: var(--learning-color, var(--purple));
+        transform: translateY(-2px);
+      }
+
+      .learning-links a i {
+        color: currentColor;
+        font-size: .66rem;
       }
 
       .site-footer {
@@ -2229,8 +2265,8 @@
               </article>
               <article class="private-project-card" style="--repo-color: #f73532">
                 <span>CRM · dados · comunicação</span>
-                <h4>Integração HubSpot e inteligência de dados</h4>
-                <p>Integração entre CRM, rotinas de ETL e comunicação para transformar dados em insights acionáveis.</p>
+                <h4>Pipeline de dados, ETL e integrações</h4>
+                <p>Desenvolvimento da pipeline e das integrações com HubSpot, rotinas de ETL e comunicação para disponibilizar dados e insights acionáveis.</p>
               </article>
               <article class="private-project-card" style="--repo-color: #92247d">
                 <span>Processos acadêmicos</span>
@@ -2258,14 +2294,19 @@
                 <p>Integração de sensores via Internet das Coisas a sistemas supervisórios, conectando dados de campo, operação e monitoramento.</p>
               </article>
               <article class="private-project-card" style="--repo-color: #5dc6ba">
-                <span>CRM corporativo</span>
-                <h4>Integração Black &amp; Decker</h4>
-                <p>Integração de processos e dados de CRM para apoiar o relacionamento e a operação comercial.</p>
+                <span>Experiência promocional</span>
+                <h4>Totem de dados para promoção do trabalho</h4>
+                <p>Sistema de display para apresentar dados e promover iniciativas de trabalho, desenvolvido para uso interno da Black &amp; Decker.</p>
               </article>
               <article class="private-project-card" style="--repo-color: #ffb716">
                 <span>Arquitetura de software</span>
                 <h4>Frameworks próprios Uniube</h4>
                 <p>Criação de padrões e componentes reutilizáveis com MVC, componentização e Vertical Slice para acelerar entregas.</p>
+              </article>
+              <article class="private-project-card" style="--repo-color: #ad8cff">
+                <span>Produtividade de engenharia</span>
+                <h4>Ferramentas CLI e programação assistida por IA</h4>
+                <p>Criação de ferramentas de linha de comando e fluxos de desenvolvimento assistidos por IA para acelerar tarefas repetitivas e a entrega de software.</p>
               </article>
             </div>
           </div>
@@ -2276,29 +2317,69 @@
                 <p class="projects-group-label"><i class="fa-solid fa-graduation-cap"></i> Materiais didáticos</p>
                 <h3>Conteúdos para aprender fazendo</h3>
               </div>
-              <span>Videoaulas · 2024</span>
+              <span>Código aberto · demos online</span>
             </header>
 
             <div class="learning-grid">
               <article class="learning-card" style="--learning-color: #f73532">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-                <span>Aplicativos móveis</span>
-                <h4>Introdução ao desenvolvimento para aplicativos móveis</h4>
+                <i class="fa-solid fa-brain"></i>
+                <span>Otimização e meta-heurísticas</span>
+                <h4>Inteligência Computacional</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/inteligencia-computacional" target="_blank" rel="noreferrer" aria-label="Ver repositório de Inteligência Computacional"><i class="fa-brands fa-github"></i> Repositório</a>
+                  <a href="https://mateusvalente.github.io/inteligencia-computacional/pages/otimizacao-metaheuristicas/fundamentos-otimizacao/introducao-otimizacao.html" target="_blank" rel="noreferrer" aria-label="Abrir demonstração de Inteligência Computacional"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live demo</a>
+                </div>
               </article>
               <article class="learning-card" style="--learning-color: #ffb716">
-                <i class="fa-solid fa-database"></i>
-                <span>Firebase</span>
-                <h4>Banco de dados não relacional e configuração do Firebase</h4>
+                <i class="fa-solid fa-globe"></i>
+                <span>Desenvolvimento web</span>
+                <h4>Programação para Internet</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/programacao-para-internet" target="_blank" rel="noreferrer" aria-label="Ver repositório de Programação para Internet"><i class="fa-brands fa-github"></i> Repositório</a>
+                  <a href="https://mateusvalente.github.io/programacao-para-internet/" target="_blank" rel="noreferrer" aria-label="Abrir demonstração de Programação para Internet"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live demo</a>
+                </div>
+              </article>
+              <article class="learning-card" style="--learning-color: #92247d">
+                <i class="fa-solid fa-robot"></i>
+                <span>Aprendizado de máquina</span>
+                <h4>Machine Learning</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/machine-learning" target="_blank" rel="noreferrer" aria-label="Ver repositório de Machine Learning"><i class="fa-brands fa-github"></i> Repositório</a>
+                  <a href="https://mateusvalente.github.io/machine-learning/" target="_blank" rel="noreferrer" aria-label="Abrir demonstração de Machine Learning"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live demo</a>
+                </div>
+              </article>
+              <article class="learning-card" style="--learning-color: #5dc6ba">
+                <i class="fa-solid fa-trophy"></i>
+                <span>Algoritmos e desafios</span>
+                <h4>Maratona de Programação</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/maratona-de-programacao" target="_blank" rel="noreferrer" aria-label="Ver repositório de Maratona de Programação"><i class="fa-brands fa-github"></i> Repositório</a>
+                  <a href="https://mateusvalente.github.io/maratona-de-programacao/" target="_blank" rel="noreferrer" aria-label="Abrir demonstração de Maratona de Programação"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live demo</a>
+                </div>
+              </article>
+              <article class="learning-card" style="--learning-color: #f73532">
+                <i class="fa-solid fa-chart-column"></i>
+                <span>Análise de dados</span>
+                <h4>Ciência de Dados</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/ciencia-de-dados" target="_blank" rel="noreferrer" aria-label="Ver repositório de Ciência de Dados"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
+              </article>
+              <article class="learning-card" style="--learning-color: #ffb716">
+                <i class="fa-solid fa-terminal"></i>
+                <span>Automação de projetos</span>
+                <h4>DevLab Generator</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/dev_lab_generator" target="_blank" rel="noreferrer" aria-label="Ver repositório do DevLab Generator"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
               </article>
               <article class="learning-card" style="--learning-color: #92247d">
                 <i class="fa-solid fa-code"></i>
-                <span>Flutter</span>
-                <h4>Utilizando Future em aplicações Flutter</h4>
-              </article>
-              <article class="learning-card" style="--learning-color: #5dc6ba">
-                <i class="fa-solid fa-store"></i>
-                <span>Publicação</span>
-                <h4>Lançamento de aplicativos nas lojas de aplicativos</h4>
+                <span>PHP e renderização</span>
+                <h4>Template Engine</h4>
+                <div class="learning-links">
+                  <a href="https://github.com/mateusvalente/template-engine-php" target="_blank" rel="noreferrer" aria-label="Ver repositório do Template Engine"><i class="fa-brands fa-github"></i> Repositório</a>
+                </div>
               </article>
             </div>
           </div>
