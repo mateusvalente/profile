@@ -288,12 +288,32 @@
 
     .hero-title span {
       display: block;
-      color: rgba(255, 244, 219, .21);
+      color: var(--red);
+    }
+
+    .hero-secondary-role {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0 0;
+      color: var(--amber);
+      font-family: "DM Mono", monospace;
+      font-size: clamp(.7rem, .9vw, .82rem);
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .hero-secondary-role::before {
+      width: 28px;
+      height: 1px;
+      flex: 0 0 auto;
+      background: currentColor;
+      content: "";
     }
 
     .hero-copy {
       max-width: 500px;
-      margin: 30px 0 0;
+      margin: 22px 0 0;
       color: var(--muted);
       font-size: clamp(1rem, 1.45vw, 1.16rem);
       line-height: 1.45;
@@ -2129,6 +2149,7 @@
       <div class="hero-content" id="sobre">
         <p class="eyebrow"><i class="fa-solid fa-circle"></i> Portfolio pessoal</p>
         <h1 class="hero-title">Desenvolvedor<span>de software</span></h1>
+        <p class="hero-secondary-role">Professor <span aria-hidden="true">·</span> Pesquisador</p>
         <p class="hero-copy">Crio produtos digitais com foco em clareza, desempenho e experiências que conectam pessoas
           a boas ideias.</p>
         <div class="stats" aria-label="Destaques profissionais">
