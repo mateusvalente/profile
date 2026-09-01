@@ -30,7 +30,7 @@
       width: 100%;
       min-height: 100%;
       margin: 0;
-      overflow-x: hidden;
+      overflow-x: clip;
       background: #251a1b;
     }
 
@@ -747,6 +747,23 @@
       padding: 20px 24px 30px;
       scrollbar-color: var(--purple) rgba(37, 26, 27, .12);
       scrollbar-width: thin;
+    }
+
+    .timeline-scroll-stage {
+      position: relative;
+    }
+
+    .timeline-scroll-stage.is-scroll-driven {
+      height: var(--timeline-stage-height);
+    }
+
+    .timeline-sticky {
+      position: relative;
+    }
+
+    .timeline-scroll-stage.is-scroll-driven .timeline-sticky {
+      position: sticky;
+      top: clamp(76px, 10vh, 108px);
     }
 
     .timeline::-webkit-scrollbar {
@@ -2337,8 +2354,10 @@
           <span aria-hidden="true">03</span>
         </header>
 
-        <div class="timeline" aria-label="Timeline de formação acadêmica">
-          <div class="timeline-horizontal">
+        <div class="timeline-scroll-stage">
+          <div class="timeline-sticky">
+            <div class="timeline" aria-label="Timeline de formação acadêmica">
+              <div class="timeline-horizontal">
             <article class="timeline-entry timeline-entry--bottom" style="grid-column: 1; --dot-color: #f89b1c">
               <span class="timeline-type">Graduação</span>
               <h3>Sistemas de Informação</h3>
@@ -2410,6 +2429,8 @@
             </article>
             <div class="timeline-marker" style="grid-column: 9; --dot-color: #60509f"><span
                 class="timeline-year">2026</span></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -3008,11 +3029,62 @@
     const navigationStart = navigation.getBoundingClientRect().top + window.scrollY;
 
     function updateNavigationState() {
-      navigation.classList.toggle('is-stuck', window.scrollY >= navigationStart);
+      const shouldStick = window.scrollY >= navigationStart;
+      const stateChanged = navigation.classList.contains('is-stuck') !== shouldStick;
+      navigation.classList.toggle('is-stuck', shouldStick);
+      if (stateChanged) window.requestAnimationFrame(measureTimeline);
     }
 
     window.addEventListener('scroll', updateNavigationState, { passive: true });
     updateNavigationState();
+
+    const timelineStage = document.querySelector('.timeline-scroll-stage');
+    const timelineSticky = timelineStage?.querySelector('.timeline-sticky');
+    const educationTimeline = timelineStage?.querySelector('.timeline');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let timelineMetrics = null;
+    let timelineFrame = 0;
+
+    function measureTimeline() {
+      if (!timelineStage || !timelineSticky || !educationTimeline) return;
+
+      const travel = Math.max(0, educationTimeline.scrollWidth - educationTimeline.clientWidth);
+      if (reduceMotion.matches || travel <= 1) {
+        timelineStage.classList.remove('is-scroll-driven');
+        timelineStage.style.removeProperty('--timeline-stage-height');
+        timelineMetrics = null;
+        return;
+      }
+
+      timelineStage.style.setProperty('--timeline-stage-height', `${educationTimeline.offsetHeight + travel}px`);
+      timelineStage.classList.add('is-scroll-driven');
+
+      const stickyTop = Number.parseFloat(getComputedStyle(timelineSticky).top) || 0;
+      timelineMetrics = {
+        start: timelineStage.getBoundingClientRect().top + window.scrollY - stickyTop,
+        travel,
+      };
+      updateTimelineProgress();
+    }
+
+    function updateTimelineProgress() {
+      timelineFrame = 0;
+      if (!timelineMetrics || !educationTimeline) return;
+
+      const progress = Math.max(0, Math.min(1, (window.scrollY - timelineMetrics.start) / timelineMetrics.travel));
+      educationTimeline.scrollLeft = progress * timelineMetrics.travel;
+    }
+
+    function requestTimelineUpdate() {
+      if (timelineFrame) return;
+      timelineFrame = window.requestAnimationFrame(updateTimelineProgress);
+    }
+
+    window.addEventListener('scroll', requestTimelineUpdate, { passive: true });
+    window.addEventListener('resize', measureTimeline);
+    window.addEventListener('load', measureTimeline);
+    reduceMotion.addEventListener?.('change', measureTimeline);
+    measureTimeline();
   </script>
   <script type="module" src="./main.js"></script>
 
