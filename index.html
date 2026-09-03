@@ -1115,7 +1115,7 @@
 
     .medals-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
     }
 
@@ -1134,6 +1134,10 @@
 
     .medals-grid.is-ready.is-revealed .medal-card:nth-child(3) {
       animation-delay: .2s;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-card:nth-child(4) {
+      animation-delay: .3s;
     }
 
     .medal-card {
@@ -1167,6 +1171,10 @@
 
     .medal-card--bronze {
       --medal-color: #ce7b46;
+    }
+
+    .medal-card--space {
+      --medal-color: #72b9ff;
     }
 
     .medal-visual {
@@ -1276,6 +1284,32 @@
       background: rgba(255, 244, 219, .05);
     }
 
+    .medal-source {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 28px;
+      color: var(--medal-color);
+      font-family: "DM Mono", monospace;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s ease, transform .2s ease;
+    }
+
+    .medal-source:hover {
+      color: var(--paper);
+      transform: translateX(3px);
+    }
+
+    .medal-source:focus-visible {
+      border-radius: 4px;
+      outline: 2px solid var(--medal-color);
+      outline-offset: 4px;
+    }
+
     @keyframes medal-card-enter {
       0% {
         opacity: 0;
@@ -1335,6 +1369,12 @@
       100% {
         opacity: 0;
         transform: scale(.7) rotate(18deg);
+      }
+    }
+
+    @media (max-width: 1020px) and (min-width: 761px) {
+      .medals-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -2972,6 +3012,10 @@
           <span class="medal-place">1º lugar · 2017</span>
           <h3>Maratona de Programação da UFU</h3>
           <p class="medal-meta"><span>Curso de Inverno</span><span>Competidor</span></p>
+          <a class="medal-source"
+            href="https://uniube.br/acontece-na-uniube/alunos-da-uniube-participam-da-escola-de-inverno-de-programacao"
+            target="_blank" rel="noreferrer">Ver notícia na UNIUBE <i
+              class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
 
         <article class="medal-card medal-card--silver">
@@ -2982,6 +3026,10 @@
           <span class="medal-place">2º lugar · 2018</span>
           <h3>Maratona de Programação da UNIFEI</h3>
           <p class="medal-meta"><span>Curso de Inverno</span><span>Competidor</span></p>
+          <a class="medal-source"
+            href="https://uniube.br/acontece-na-uniube/alunos-da-uniube-participam-da-escola-de-inverno-de-programacao"
+            target="_blank" rel="noreferrer">Ver notícia na UNIUBE <i
+              class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
 
         <article class="medal-card medal-card--bronze">
@@ -2992,6 +3040,20 @@
           <span class="medal-place">3º lugar · 2026</span>
           <h3>Maratona Regional de Programação</h3>
           <p class="medal-meta"><span>Etapa regional</span><span>Coach</span></p>
+        </article>
+
+        <article class="medal-card medal-card--space">
+          <div class="medal-visual" aria-hidden="true"><i class="fa-solid fa-shuttle-space"></i></div>
+          <span class="medal-spark medal-spark--one" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--two" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--three" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-place">Finalista · 2018</span>
+          <h3>NASA Space Apps Challenge</h3>
+          <p class="medal-meta"><span>Hackathon internacional</span><span>Competidor</span></p>
+          <a class="medal-source"
+            href="https://uniube.br/acontece-na-uniube/alunos-da-uniube-participam-de-competicao-internacional-da-nasa"
+            target="_blank" rel="noreferrer">Ver notícia na UNIUBE <i
+              class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </article>
       </div>
     </section>
