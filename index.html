@@ -900,6 +900,116 @@
       line-height: 1.25;
     }
 
+    .badges-block {
+      margin-top: 84px;
+    }
+
+    .badges-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .badges-label {
+      margin: 0 0 11px;
+      color: #8c2477;
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .badges-heading h3 {
+      margin: 0;
+      font-size: clamp(1.7rem, 3.5vw, 2.55rem);
+      letter-spacing: -.065em;
+    }
+
+    .badges-heading>span {
+      color: #7c665c;
+      font-family: "DM Mono", monospace;
+      font-size: .68rem;
+    }
+
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .badge-card {
+      display: grid;
+      min-width: 0;
+      min-height: 340px;
+      overflow: hidden;
+      place-items: center;
+      border: 1px solid rgba(37, 26, 27, .15);
+      border-radius: 15px;
+      background: #fffaf0;
+      box-shadow: 0 9px 25px rgba(50, 31, 27, .07);
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+
+    .badge-card:hover {
+      border-color: rgba(146, 36, 125, .38);
+      box-shadow: 0 16px 36px rgba(50, 31, 27, .12);
+      transform: translateY(-4px);
+    }
+
+    .badge-link {
+      display: grid;
+      width: 100%;
+      min-height: 340px;
+      padding: 22px 22px 17px;
+      place-items: center;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .badge-link:focus-visible {
+      outline: 3px solid var(--purple);
+      outline-offset: -5px;
+    }
+
+    .badge-link img {
+      display: block;
+      width: min(260px, 100%);
+      height: 260px;
+      object-fit: contain;
+      transition: filter .25s ease, transform .25s ease;
+    }
+
+    .badge-card:hover .badge-link img {
+      filter: drop-shadow(0 10px 13px rgba(50, 31, 27, .16));
+      transform: scale(1.035);
+    }
+
+    .badge-link-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      align-self: end;
+      color: #725f56;
+      font-family: "DM Mono", monospace;
+      font-size: .64rem;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      transition: color .2s ease;
+    }
+
+    .badge-card:hover .badge-link-label {
+      color: var(--purple);
+    }
+
+    .badge-link-label i {
+      display: grid;
+      place-items: center;
+    }
+
     .courses-block {
       margin-top: 84px;
     }
@@ -962,6 +1072,270 @@
       color: #66564f;
       font-size: .72rem;
       line-height: 1.25;
+    }
+
+    .competitive-section {
+      position: relative;
+      padding: 118px 0 82px;
+    }
+
+    .competitive-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 54px;
+    }
+
+    .competitive-heading p {
+      margin: 0 0 11px;
+      color: var(--amber);
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .competitive-heading h2 {
+      margin: 0;
+      color: var(--paper);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      letter-spacing: -.08em;
+      line-height: .78;
+      text-transform: uppercase;
+    }
+
+    .competitive-heading>span {
+      color: rgba(255, 244, 219, .18);
+      font-size: clamp(4.5rem, 10vw, 9rem);
+      font-weight: 700;
+      letter-spacing: -.11em;
+      line-height: .6;
+    }
+
+    .medals-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .medals-grid.is-ready .medal-card {
+      opacity: 0;
+      transform: translateY(32px) scale(.97);
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-card {
+      animation: medal-card-enter .78s cubic-bezier(.2, .82, .32, 1.18) both;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-card:nth-child(2) {
+      animation-delay: .1s;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-card:nth-child(3) {
+      animation-delay: .2s;
+    }
+
+    .medal-card {
+      --medal-color: var(--amber);
+      position: relative;
+      min-height: 330px;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid rgba(255, 244, 219, .16);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255, 244, 219, .1), rgba(24, 15, 16, .74));
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .16);
+      isolation: isolate;
+    }
+
+    .medal-card::before {
+      position: absolute;
+      z-index: -1;
+      top: -90px;
+      right: -80px;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      content: "";
+      background: radial-gradient(circle, color-mix(in srgb, var(--medal-color) 28%, transparent), transparent 68%);
+    }
+
+    .medal-card--silver {
+      --medal-color: #d8d8df;
+    }
+
+    .medal-card--bronze {
+      --medal-color: #ce7b46;
+    }
+
+    .medal-visual {
+      position: relative;
+      display: grid;
+      width: 88px;
+      height: 88px;
+      overflow: hidden;
+      margin-bottom: 42px;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--medal-color) 54%, transparent);
+      border-radius: 50%;
+      color: var(--medal-color);
+      background: rgba(24, 15, 16, .64);
+      box-shadow: 0 0 0 9px color-mix(in srgb, var(--medal-color) 9%, transparent);
+      font-size: 2.65rem;
+      transform-origin: 50% 50%;
+    }
+
+    .medal-visual::after {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      content: "";
+      opacity: 0;
+      background: linear-gradient(115deg, transparent 32%, rgba(255, 255, 255, .48) 48%, transparent 64%);
+      transform: translateX(-145%);
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-visual {
+      animation: medal-award .72s cubic-bezier(.2, .85, .25, 1.35) .28s both;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-visual::after {
+      animation: medal-shine .85s ease-out .72s both;
+    }
+
+    .medal-spark {
+      position: absolute;
+      top: 38px;
+      left: 118px;
+      color: var(--medal-color);
+      font-size: .66rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(.2) rotate(-20deg);
+    }
+
+    .medal-spark--two {
+      top: 104px;
+      left: 42px;
+      font-size: .46rem;
+    }
+
+    .medal-spark--three {
+      top: 92px;
+      left: 135px;
+      font-size: .38rem;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-spark {
+      animation: medal-sparkle .62s ease-out .72s both;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-spark--two {
+      animation-delay: .84s;
+    }
+
+    .medals-grid.is-ready.is-revealed .medal-spark--three {
+      animation-delay: .94s;
+    }
+
+    .medal-place {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--medal-color);
+      font-family: "DM Mono", monospace;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .medal-card h3 {
+      margin: 0;
+      color: var(--paper);
+      font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+      letter-spacing: -.055em;
+      line-height: 1.05;
+    }
+
+    .medal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-family: "DM Mono", monospace;
+      font-size: .65rem;
+      text-transform: uppercase;
+    }
+
+    .medal-meta span {
+      border: 1px solid rgba(255, 244, 219, .14);
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: rgba(255, 244, 219, .05);
+    }
+
+    @keyframes medal-card-enter {
+      0% {
+        opacity: 0;
+        transform: translateY(32px) scale(.97);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes medal-award {
+      0% {
+        opacity: 0;
+        transform: scale(.45) rotate(-12deg);
+      }
+
+      62% {
+        opacity: 1;
+        transform: scale(1.08) rotate(3deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    @keyframes medal-shine {
+      0% {
+        opacity: 0;
+        transform: translateX(-145%);
+      }
+
+      25% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateX(145%);
+      }
+    }
+
+    @keyframes medal-sparkle {
+      0% {
+        opacity: 0;
+        transform: scale(.2) rotate(-20deg);
+      }
+
+      48% {
+        opacity: 1;
+        transform: scale(1.35) rotate(8deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(.7) rotate(18deg);
+      }
     }
 
     .experience-section {
@@ -1982,6 +2356,23 @@
         top: calc(136px + 31px);
       }
 
+      .badges-block {
+        margin-top: 60px;
+      }
+
+      .badges-heading {
+        align-items: start;
+      }
+
+      .badges-heading>span {
+        padding-top: 7px;
+        white-space: nowrap;
+      }
+
+      .badges-grid {
+        grid-template-columns: 1fr;
+      }
+
       .courses-block {
         margin-top: 60px;
       }
@@ -1993,6 +2384,34 @@
       .course-card {
         height: 112px;
         min-height: 0;
+      }
+
+      .competitive-section {
+        padding: 82px 0 54px;
+      }
+
+      .competitive-heading {
+        grid-template-columns: minmax(0, 1fr) 82px;
+        gap: 10px;
+        margin-bottom: 42px;
+      }
+
+      .competitive-heading>span {
+        width: 82px;
+        margin-right: 4px;
+        font-size: clamp(3.5rem, 14vw, 4rem);
+        letter-spacing: -.13em;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .medals-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .medal-card {
+        min-height: 300px;
+        padding: 26px;
       }
 
       .experience-section {
@@ -2122,6 +2541,18 @@
 
     @media (prefers-reduced-motion: reduce) {
       .skills-track {}
+
+      .medals-grid.is-ready .medal-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .medals-grid.is-ready.is-revealed .medal-card,
+      .medal-visual,
+      .medal-visual::after,
+      .medal-spark {
+        animation: none;
+      }
     }
   </style>
 </head>
@@ -2135,6 +2566,7 @@
         <a href="#inicio">Início</a>
         <a href="#skills">Skills</a>
         <a href="#formacao">Formação</a>
+        <a href="#medalhas">Medalhas</a>
         <a href="#experiencia">Experiência</a>
         <a href="#pesquisa">Pesquisa</a>
         <a href="#projetos">Projetos</a>
@@ -2434,6 +2866,49 @@
           </div>
         </div>
 
+        <section class="badges-block" aria-labelledby="badges-title">
+          <header class="badges-heading">
+            <div>
+              <p class="badges-label"><i class="fa-solid fa-award"></i> Credenciais verificadas</p>
+              <h3 id="badges-title">Badges e certificações</h3>
+            </div>
+            <span>03 badges</span>
+          </header>
+
+          <div class="badges-grid">
+            <article class="badge-card">
+              <a class="badge-link" href="https://www.credly.com/badges/e49801be-c042-4bdd-95fb-880f1bd8aee0/public_url"
+                target="_blank" rel="noreferrer" aria-label="Abrir credencial verificada na Credly">
+                <img src="https://images.credly.com/size/340x340/images/e7bf6727-22cf-45d6-ad9c-76ab57c3f11b/image.png"
+                  alt="Badge de certificação verificado na Credly" width="260" height="260" loading="lazy"
+                  decoding="async" />
+                <span class="badge-link-label">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </article>
+            <article class="badge-card">
+              <a class="badge-link"
+                href="https://profiles.badgeclaimed.com/user-285905/badges/urn:uuid:c7897490-9e10-48de-82d6-e3933c40c3f0.html"
+                target="_blank" rel="noreferrer" aria-label="Abrir credencial verificada no BadgeClaimed">
+                <img src="https://images.credly.com/size/340x340/images/5e2afabf-62f3-48ae-bbed-7e57c2e78c6a/blob"
+                  alt="Badge de certificação verificado no BadgeClaimed" width="260" height="260" loading="lazy"
+                  decoding="async" />
+                <span class="badge-link-label">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </article>
+            <article class="badge-card">
+              <a class="badge-link"
+                href="https://profiles.badgeclaimed.com/user-285905/badges/urn:uuid:0ccd6bf5-d473-4874-8b95-2ed9ef730401.html"
+                target="_blank" rel="noreferrer" aria-label="Abrir credencial verificada no BadgeClaimed">
+                <img
+                  src="https://d2wpx7yfzfl6x2.cloudfront.net/badge-images/74fa9f85-d5ba-4b51-832c-4c874c53ce4b_a95fdaee3c4a49b181f3081f4a17aa1a.png"
+                  alt="Badge de certificação verificado no BadgeClaimed" width="260" height="260" loading="lazy"
+                  decoding="async" />
+                <span class="badge-link-label">Ver credencial <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+              </a>
+            </article>
+          </div>
+        </section>
+
         <div class="courses-block">
           <div class="courses-heading">
             <div>
@@ -2479,13 +2954,55 @@
       </div>
     </section>
 
+    <section class="competitive-section" id="medalhas" aria-labelledby="competitive-title">
+      <header class="competitive-heading">
+        <div>
+          <p><i class="fa-solid fa-trophy"></i> Programação competitiva</p>
+          <h2 id="competitive-title">Medalhas</h2>
+        </div>
+        <span aria-hidden="true">04</span>
+      </header>
+
+      <div class="medals-grid">
+        <article class="medal-card">
+          <div class="medal-visual" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+          <span class="medal-spark medal-spark--one" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--two" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--three" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-place">1º lugar · 2017</span>
+          <h3>Maratona de Programação da UFU</h3>
+          <p class="medal-meta"><span>Curso de Inverno</span><span>Competidor</span></p>
+        </article>
+
+        <article class="medal-card medal-card--silver">
+          <div class="medal-visual" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+          <span class="medal-spark medal-spark--one" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--two" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--three" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-place">2º lugar · 2018</span>
+          <h3>Maratona de Programação da UNIFEI</h3>
+          <p class="medal-meta"><span>Curso de Inverno</span><span>Competidor</span></p>
+        </article>
+
+        <article class="medal-card medal-card--bronze">
+          <div class="medal-visual" aria-hidden="true"><i class="fa-solid fa-medal"></i></div>
+          <span class="medal-spark medal-spark--one" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--two" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-spark medal-spark--three" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+          <span class="medal-place">3º lugar · 2026</span>
+          <h3>Maratona Regional de Programação</h3>
+          <p class="medal-meta"><span>Etapa regional</span><span>Coach</span></p>
+        </article>
+      </div>
+    </section>
+
     <section class="experience-section" id="experiencia" aria-labelledby="experience-title">
       <header class="experience-heading">
         <div>
           <p><i class="fa-solid fa-briefcase"></i> Trajetória profissional</p>
           <h2 id="experience-title">Experiência</h2>
         </div>
-        <span aria-hidden="true">04</span>
+        <span aria-hidden="true">05</span>
       </header>
 
       <div class="experience-list">
@@ -2587,7 +3104,7 @@
           <p><i class="fa-solid fa-flask"></i> Pesquisa e produção científica</p>
           <h2 id="research-title">Pesquisa</h2>
         </div>
-        <span aria-hidden="true">05</span>
+        <span aria-hidden="true">06</span>
       </header>
 
       <div class="research-projects">
@@ -2744,7 +3261,7 @@
             <p><i class="fa-solid fa-diagram-project"></i> Pesquisa aplicada e educação</p>
             <h2 id="projects-title">Projetos</h2>
           </div>
-          <span aria-hidden="true">06</span>
+          <span aria-hidden="true">07</span>
         </header>
 
         <div class="project-research-grid">
@@ -3085,6 +3602,17 @@
     window.addEventListener('load', measureTimeline);
     reduceMotion.addEventListener?.('change', measureTimeline);
     measureTimeline();
+
+    const medalsGrid = document.querySelector('.medals-grid');
+    if (medalsGrid && !reduceMotion.matches && 'IntersectionObserver' in window) {
+      medalsGrid.classList.add('is-ready');
+      const medalsObserver = new IntersectionObserver((entries, observer) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        medalsGrid.classList.add('is-revealed');
+        observer.unobserve(medalsGrid);
+      }, { threshold: .28 });
+      medalsObserver.observe(medalsGrid);
+    }
   </script>
   <script type="module" src="./main.js"></script>
 
